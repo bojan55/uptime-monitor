@@ -19,4 +19,11 @@ public class MonitorService {
                 .map(MonitorResponse::from)
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public MonitorResponse findById(Long id){
+        return monitorRepository.findById(id)
+                .map(MonitorResponse::from)
+                .orElseThrow(() -> new MonitorNotFoundException(id));
+    }
 }
