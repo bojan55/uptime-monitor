@@ -26,4 +26,16 @@ public class MonitorService {
                 .map(MonitorResponse::from)
                 .orElseThrow(() -> new MonitorNotFoundException(id));
     }
+
+    @Transactional
+    public MonitorResponse create(CreateMonitorRequest request){
+        Monitor monitor = new Monitor();
+        monitor.setName(request.name());
+        monitor.setUrl(request.url());
+        if (request.intervalSeconds() != null){
+            monitor.setIntervalSeconds(request.intervalSeconds());
+        }
+        Monitor saved = monitorRepository.save(monitor);
+        return MonitorResponse.from(saved);
+    }
 }

@@ -1,0 +1,34 @@
+### Lista svih monitora
+GET http://localhost:8080/api/monitors
+
+### Jedan monitor
+GET http://localhost:8080/api/monitors/1
+
+### Kreiraj monitor
+POST http://localhost:8080/api/monitors
+Content-Type: application/json
+
+{
+  "name": "Spring",
+  "url": "https://spring.io",
+  "intervalSeconds": 120
+}
+
+### Kreiraj monitor (bez intervala)
+POST http://localhost:8080/api/monitors
+Content-Type: application/json
+
+{
+  "name": "Wikipedia",
+  "url": "https://www.wikipedia.org"
+}
+
+### Kreiraj monitor (neispravno)
+POST http://localhost:8080/api/monitors
+Content-Type: application/json
+
+{
+  "name": "",
+  "url": "ovo-nije-url",
+  "intervalSeconds": 1
+}
